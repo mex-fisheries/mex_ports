@@ -37,5 +37,11 @@ from the Mexican Secretaria De Comunicaciones y Transportes.
 
 ### Column specifications
 
+- `municipality_id`:
+- `municipality_name`:
 - `port_id`: numeric. 5-digit numeric code that acts as a unique
   identifier for each port.
+- `port_name`:
+- `landing_site_id`:
+
+### Using the data
