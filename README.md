@@ -40,21 +40,29 @@ pasting it, and later reorganized into new columns. The information in
 mex_large_scale_landing_ports.csv is from Mexico’s fisheries production
 data and was extracted through copy and pasting.
 
-The inputs for ‘port_id’ are labeled as ‘Clv. del puerto’ in
-catastro.pdf. The inputs for ‘municipality_code’ (renamed
-‘municipality_id’ in final mex_ports cleaned data) and
-‘municipality_name’ are found labeled together under ‘Municipio’ in
-catastro.pdf The inputs for ‘port_name’ are labeled as ‘Nombre del
-Puerto’ in catastro.pdf The inputs for ‘longitude’ and ‘latitude’ are
-labeled as ‘Longitud’ and ‘Latutid’ respectively in catastro.pdf
-
-The inputs for ‘landing_site_id’ are originally labeled as \_\_\_ in
-\_\_\_
+- The inputs for ‘port_id’ are labeled as ‘Clv. del puerto’ in
+  catastro.pdf.
+- The inputs for ‘municipality_code’ (renamed ‘municipality_id’ in final
+  mex_ports cleaned data) and ‘municipality_name’ are found labeled
+  together under ‘Municipio’ in catastro.pdf
+- The inputs for ‘port_name’ are labeled as ‘Nombre del Puerto’ in
+  catastro.pdf
+- The inputs for ‘longitude’ and ‘latitude’ are labeled as ‘Longitud’
+  and ‘Latutid’ respectively in catastro.pdf
 
 mex_ports_dictionary.csv was created to find the overlap of ports
-between these two files. This file connected the ports that contained
-the same or very similar names (ex, a port in one data set omitted
-accents while the other did not).
+between these two files. This file relates the ports that contained the
+same or very similar names (ex, a port in one data set omitted accents
+while the other did not).
+
+The final data found in ‘data’ -\> ‘clean’ titled mex_ports ( 3
+different formats) was created using the script titled
+03_combine_sources.R found in the ‘scripts’ folder. This script cleans
+and retains relevant columns from the dictionary (omitting lake ports)
+and mexican_ports and then combines the objects through their
+corresponding landing_site_key. Finally, the newly organized data is
+reordered and renamed accordingly and made further accessible through
+the addition of tabular and geospatial versions.
 
 ### Column specifications
 
