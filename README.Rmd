@@ -50,34 +50,41 @@ ggplot(data = mex) +
 ```
 
 ## About
+
 This repository is still in development. It will contain data and code to a geospatial dataset of the major ports of Mexico. It is intended to interface with other data in [mex_fisheries](https://github.com/jcvdav/mex_fisheries), such as vessel- and port-level landings information.
 
-154 individual ports are identified in mexican_ports.csv, 4 of which are on lakes and therefore are NOT coastline ports. 51 of the total ports in mexican_ports.csv can be matched to ports in mex_large_scale_landing_ports.csv, which is reflected in the mex_ports_dictionary.csv file. 17 ports found in mex_large_scale_landing_ports.csv cannot be accurately matched to mexican_ports.csv obtained from catastro.pdf.
+There are __ ports in the final data. 154 individual ports are identified in mexican_ports.csv, 4 of which are on lakes and therefore are NOT coastline ports. 
+51 of the total ports in mexican_ports.csv can be matched to ports in mex_large_scale_landing_ports.csv, which is reflected in the mex_ports_dictionary.csv file. 17 ports found in mex_large_scale_landing_ports.csv cannot be accurately matched to mexican_ports.csv obtained from catastro.pdf.
+Lake ports, ports without a matching port in both files, and repeats are filtered out in 03_combine_sources.R.
 
 
 ### How the data are built
 
-The information in mexican_ports.csv is obtained from a file in the folders 'data' -> 'raw' titled catastro.pdf. catastro.pdf contains information on Mexico ports from the Mexican Secretaria de Comunicaciones y Transportes and the Departamento de Catastro, Instalaciones y Recintos. This information was extracted by copying and pasting it, and later reorganized into new columns. 
-The information in mex_large_scale_landing_ports.csv is from Mexico’s fisheries production data and was extracted through copy and pasting. 
+The final data, mex_ports, is a culmination of information from the files mexian_ports.csv and mex_large_scale_landing_ports.csv that are correlated through mex_ports_dictionary.csv.
+
+The information in mexican_ports.csv is obtained from the pdf titled catastro.pdf, which contains information on Mexican ports from the Mexican Secretaria de Comunicaciones y Transportes and the Departamento de Catastro, Instalaciones y Recintos. This information was extracted through copying and pasting it and later reorganized into new columns. 
 
 - The inputs for 'port_id' are labeled as 'Clv. del puerto' in catastro.pdf. 
 - The inputs for 'municipality_code' (renamed 'municipality_id' in final mex_ports cleaned data) and 'municipality_name' are found labeled together under 'Municipio' in catastro.pdf
 - The inputs for 'port_name' are labeled as 'Nombre del Puerto' in catastro.pdf
 - The inputs for 'longitude' and 'latitude' are labeled as 'Longitud' and 'Latutid' respectively in catastro.pdf
 
-mex_ports_dictionary.csv was created to find the overlap of ports between these two files. This file relates the ports that contained the same or very similar names (ex, a port in one data set omitted accents while the other did not). 
+The information in mex_large_scale_landing_ports.csv is from Mexico’s fisheries production data and was also extracted through copy and pasting. 
 
-The final data found in ‘data’ -> ‘clean’ titled mex_ports ( 3 different formats) was created using the script titled 03_combine_sources.R found in the ‘scripts’ folder. This script cleans and retains relevant columns from the dictionary (omitting lake ports) and mexican_ports and then combines the objects through their corresponding landing_site_key. Finally, the newly organized data is reordered and renamed accordingly and made further accessible through the addition of tabular and geospatial versions. 
+Overlaps of ports in these two files were identified through the file mex_ports_dictionary.csv This file relates the ports that contained the same or very similar names (ex, a port in one data set omitted accents while the other did not). 
+
+The final data, mex_ports, was created using the script titled 03_combine_sources.R. 
+
+This script cleans and retains relevant columns from the dictionary, omitting lake ports 4 that are not relevant to the set. It then combines the objects through their corresponding landing_site_key. Finally, the data is standardized in name and made further accessible through the addition of tabular and geospatial file versions. 
 
 
 ### Column specifications
 
-- municipality_id: numeric. 5-digit numeric code that acts as a unique identifier for each municipality. 
+- `municipality_id` or `municipality_code`: numeric. 5-digit numeric code that acts as a unique identifier for each municipality. 
 - municipality_name: text. Official name of municipality. 
 - port_id: numeric. 5-digit numeric code that acts as a unique identifier for each port. 
 - port_name: text. Official name of port. Originally labeled under ‘Nombre del Puerto’.
-- landing_site_id: ____
-
+-  `landing_site_id` or `landing_site_key`: numeric. 
 
 ### Using the data
 
