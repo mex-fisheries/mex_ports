@@ -64,7 +64,7 @@ mex_ports_sf <- st_as_sf(mex_ports,
 # Tabular versions of the data -------------------------------------------------
 write_rds(x = mex_ports,
           file = here("data", "clean", "mex_ports.rds"))
-write_rds(x = mex_ports,
+write_csv(x = mex_ports,
           file = here("data", "clean", "mex_ports.csv"))
 
 # Geospatial version of the data -----------------------------------------------
