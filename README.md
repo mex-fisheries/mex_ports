@@ -23,7 +23,7 @@ vessel- and port-level landings information.
 
 There are \_\_ ports in the final data. 154 individual ports are
 identified in mexican_ports.csv, 4 of which are on lakes and therefore
-are NOT coastline ports. 51 of the total ports in mexican_ports.csv can
+are not coastline ports. 51 of the total ports in mexican_ports.csv can
 be matched to ports in mex_large_scale_landing_ports.csv, which is
 reflected in the mex_ports_dictionary.csv file. 17 ports found in
 mex_large_scale_landing_ports.csv cannot be accurately matched to
