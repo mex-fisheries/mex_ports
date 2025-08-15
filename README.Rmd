@@ -80,11 +80,11 @@ This script cleans and retains relevant columns from the dictionary, omitting la
 
 ### Column specifications
 
-- `municipality_id` or `municipality_code`: numeric. 5-digit numeric code that acts as a unique identifier for each municipality. 
-- `municipality_name`: text. Official name of municipality. 
-- `port_id`: numeric. 5-digit numeric code that acts as a unique identifier for each port. 
-- `port_name`: text. Official name of port. Originally labeled under ‘Nombre del Puerto’.
--  `landing_site_id` or `landing_site_key`: numeric. 
+- `municipality_id` or `municipality_code`: character. 5-digit code that acts as a unique identifier for each municipality. 
+- `municipality_name`: character. Official name of municipality. 
+- `port_id`: character. 5-digit code that acts as a unique identifier for each port. 
+- `port_name`: character. Official name of port. Originally labeled under ‘Nombre del Puerto’.
+- `landing_site_id`: character. 3-digit alphanumeric string that acts as a unique identifier for a what CONAPESCA considers a landing site.
 
 ### Using the data
 
