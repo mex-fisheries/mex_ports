@@ -78,7 +78,8 @@ mex_ports <- mex_ports_raw |>
 
 mex_ports_sf <- st_as_sf(mex_ports,
                          coords = c("longitude", "latitude"),
-                         crs = "EPSG:4326")
+                         crs = "EPSG:4326",
+                         remove = FALSE)
 
 
 ## EXPORT ######################################################################
