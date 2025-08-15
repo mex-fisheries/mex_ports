@@ -23,51 +23,50 @@ vessel- and port-level landings information.
 
 There are 152 ports in the final data. Lake ports, ports without a
 matching port in both files, and repeats are filtered out in
-03_combine_sources.R. 155 individual ports are identified in
-mexican_ports.csv, 4 of which are on lakes and therefore are not
-coastline ports. 51 of the total ports in mexican_ports.csv can be
+`03_combine_sources.R`. 155 individual ports are identified in
+`mexican_ports.csv`, 4 of which are on lakes and therefore are not
+coastline ports. 51 of the total ports in `mexican_ports.csv` can be
 matched to ports in `mex_large_scale_landing_ports.csv` by landing site
-id, which is reflected in the mex_ports_dictionary.csv file. The ports
-that do not have a correlated landing site id will show NA in that
-colum.
+id, which is reflected in `mex_ports_dictionary.csv`. The ports that do
+not have a correlated landing site id will show NA in that column.
 
 ### How the data are built
 
 The final data, mex_ports, is a culmination of information from the
-files mexian_ports.csv and mex_large_scale_landing_ports.csv that are
-correlated through mex_ports_dictionary.csv.
+files `mexian_ports.csv` and `mex_large_scale_landing_ports.csv` that
+are correlated through `mex_ports_dictionary.csv`.
 
-The information in mexican_ports.csv is obtained from the pdf titled
-catastro.pdf, which contains information on Mexican ports from the
+The information in `mexican_ports.csv` is obtained from the pdf titled
+`catastro.pdf`, which contains information on Mexican ports from the
 Mexican Secretaria de Comunicaciones y Transportes and the Departamento
 de Catastro, Instalaciones y Recintos. This information was extracted
 through copying and pasting it and later reorganized into new columns.
 
-- The inputs for ‘port_id’ are labeled as ‘Clv. del puerto’ in
-  catastro.pdf.
-- The inputs for ‘municipality_code’ (renamed ‘municipality_id’ in final
-  mex_ports cleaned data) and ‘municipality_name’ are found labeled
-  together under ‘Municipio’ in catastro.pdf
-- The inputs for ‘port_name’ are labeled as ‘Nombre del Puerto’ in
+- The inputs for `port_id` are labeled as ‘Clv. del puerto’ in
+  `catastro.pdf`
+- The inputs for `municipality_code` (renamed `municipality_id` in final
+  `mex_ports` cleaned data) and `municipality_name` are found labeled
+  together under ‘Municipio’ in `catastro.pdf`
+- The inputs for `port_name` are labeled as `Nombre del Puerto` in
   catastro.pdf
-- The inputs for ‘longitude’ and ‘latitude’ are labeled as ‘Longitud’
-  and ‘Latutid’ respectively in catastro.pdf
+- The inputs for `longitude` and `latitude` are labeled as `Longitud`
+  and `Latutid` respectively in `catastro.pdf`
 
-The information in mex_large_scale_landing_ports.csv is from Mexico’s
+The information in `mex_large_scale_landing_ports.csv` is from Mexico’s
 fisheries production data and was also extracted through copy and
 pasting.
 
 Overlaps of ports in these two files were identified through the file
-mex_ports_dictionary.csv This file relates the ports that contained the
-same or very similar names (ex, a port in one data set omitted accents
-while the other did not).
+`mex_ports_dictionary.csv` This file relates the ports that contained
+the same or very similar names (ex, a port in one data set omitted
+accents while the other did not).
 
-The final data, mex_ports, was created using the script titled
-03_combine_sources.R.
+The final data, `mex_ports`, was created using the script titled
+`03_combine_sources.R`.
 
 This script cleans and retains relevant columns from the dictionary,
 omitting lake ports 4 that are not relevant to the set. It then combines
-the objects through their corresponding landing_site_key. Finally, the
+the objects through their corresponding `landing_site_key`. Finally, the
 data is standardized in name and made further accessible through the
 addition of tabular and geospatial file versions.
 
@@ -75,10 +74,10 @@ addition of tabular and geospatial file versions.
 
 - `municipality_id` or `municipality_code`: numeric. 5-digit numeric
   code that acts as a unique identifier for each municipality.
-- municipality_name: text. Official name of municipality.
-- port_id: numeric. 5-digit numeric code that acts as a unique
+- `municipality_name`: text. Official name of municipality.
+- `port_id`: numeric. 5-digit numeric code that acts as a unique
   identifier for each port.
-- port_name: text. Official name of port. Originally labeled under
+- `port_name`: text. Official name of port. Originally labeled under
   ‘Nombre del Puerto’.
 - `landing_site_id` or `landing_site_key`: numeric.
 
