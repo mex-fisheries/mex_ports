@@ -36,11 +36,11 @@ dictionary_clean <- dictionary |>
 mex_ports <- mex_ports_raw |> 
   # Remove inland ports (they are lake ports)
   filter(!port_id %in% c("14004", # remove port AJIJIC in Chapala lake
-                         "14030", # remove port CHAPALA in Chapala lake
-                         "16079", # remove port ZIRAHUEN in Lago de Zirahuén
-                         "16001"  # remove LAGO DE APATZCUARO in Patzcuaro lake
+                         "14003", # remove port CHAPALA in Chapala lake
+                         "16003", # remove port ZIRAHUEN in Lago de Zirahuén
+                         "16002"  # remove LAGO DE APATZCUARO in Patzcuaro lake
   )
-  ) |> 
+  ) |>
   # Remove some rows that are NA across the board
   drop_na() |> 
   # Add landing site key to match with CONAPESCA
