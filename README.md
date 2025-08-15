@@ -21,7 +21,7 @@ interface with other data in
 [mex_fisheries](https://github.com/jcvdav/mex_fisheries), such as
 vessel- and port-level landings information.
 
-There are 151 ports in the final data. Lake ports, ports without a
+There are 152 ports in the final data. Lake ports, ports without a
 matching port in both files, and repeats are filtered out in
 03_combine_sources.R. 155 individual ports are identified in
 mexican_ports.csv, 4 of which are on lakes and therefore are not
