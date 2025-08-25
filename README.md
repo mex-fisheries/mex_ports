@@ -3,12 +3,13 @@
 
 # A geospatial dataset of Mexican ports
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15778575.svg)](https://doi.org/10.5281/zenodo.15778575)
+Latest version:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16942285.svg)](https://doi.org/10.5281/zenodo.16942285)
 
 By: Emma Zgonena, Renato Molina & Juan Carlos Villaseñor-Derbez
 
-**Cite as:** Zgonena et al., 2025. A geospatial dataset of Mexican
-ports. DOI:
+**Cite all versions as: as:** Zgonena et al., 2025. A geospatial dataset
+of Mexican ports. DOI:
 [10.5281/zenodo.15778574](https://zenodo.org/records/15778575#:~:text=10.5281/zenodo.15778574)
 
 ![](README_files/figure-gfm/map-1.png)<!-- -->
