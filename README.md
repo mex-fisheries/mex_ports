@@ -109,3 +109,88 @@ The data are available in three formats:
   the port.
 
 ## Using the data
+
+### Build a table of landing sites an d corodinates
+
+``` r
+#Load packages
+
+library(tidyverse)
+# Load the data using the csv file
+mex_ports <- read_csv(
+  file = "https://github.com/mex-fisheries/mex_ports/raw/refs/heads/main/data/clean/mex_ports.csv") # You can read the rds file using read_RDS(url("url/to/file.rds"))
+#> Rows: 151 Columns: 7
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (5): municipality_id, municipality_name, port_id, port_name, landing_sit...
+#> dbl (2): longitude, latitude
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+# A quick glimpse at the data
+glimpse(mex_ports)
+#> Rows: 151
+#> Columns: 7
+#> $ municipality_id   <chr> "02005", "02001", "02001", "02001", "02001", "02001"…
+#> $ municipality_name <chr> "PLAYAS DE ROSARITO", "ENSENADA", "ENSENADA", "ENSEN…
+#> $ port_id           <chr> "02001", "02002", "02003", "02004", "02005", "02006"…
+#> $ port_name         <chr> "ROSARITO", "LA MISION", "El SAUZAL", "MARINA CORAL"…
+#> $ landing_site_id   <chr> NA, NA, "02A", NA, "02B", NA, NA, NA, "02C", "02D", …
+#> $ longitude         <dbl> -117.0731, -116.8801, -116.7043, -116.6612, -116.625…
+#> $ latitude          <dbl> 32.3692, 32.0550, 31.8944, 31.8622, 31.8522, 31.5176…
+
+# Let's get all ports that can be matched to landing site from CONAPESCA's data
+mex_ports |> 
+  filter(!is.na(landing_site_id)) |> 
+  select(port_name, landing_site_id, longitude, latitude)
+#> # A tibble: 50 × 4
+#>    port_name       landing_site_id longitude latitude
+#>    <chr>           <chr>               <dbl>    <dbl>
+#>  1 El SAUZAL       02A                 -117.     31.9
+#>  2 ENSENADA        02B                 -117.     31.9
+#>  3 ISLA CEDROS     02C                 -115.     28.1
+#>  4 SAN FELLIPE     02D                 -115.     31.0
+#>  5 GURRERO NEGRO   03L                 -114.     27.9
+#>  6 A. LOPEZ MATEOS 03D                 -112.     25.2
+#>  7 SAN CARLOS      03B                 -112.     24.8
+#>  8 PUERTO ALCATRAZ 03C                 -112.     24.5
+#>  9 CABO SAN LUCAS  03E                 -110.     22.9
+#> 10 SANTA ROSALIA   03H                 -112.     27.3
+#> # ℹ 40 more rows
+```
+
+### Build a map
+
+The code below is used to build the figure at the top of this document.
+
+``` r
+# Load packages
+library(rnaturalearth)
+library(sf)
+library(tidyverse)
+
+# This time we read the geopackage
+mex_ports_sf <- st_read("https://github.com/mex-fisheries/mex_ports/raw/refs/heads/main/data/clean/mex_ports.gpkg",
+                        quiet = TRUE)
+
+mex <- ne_countries(country = "Mexico")
+
+ggplot(data = mex) +
+  geom_sf() +
+  geom_sf(data = mex_ports_sf,
+          mapping = aes(fill = !is.na(landing_site_id)),
+          color = "black",
+          shape = 21,
+          size = 2,
+          alpha = 0.7) +
+  theme_minimal() +
+  theme(legend.position = "inside",
+        legend.position.inside = c(0.1, 0.2)) +
+  scale_fill_brewer(palette = "Set1") +
+  labs(title = "Mexican Ports",
+       subtitle = "Colors indicate whether the port was matched to a CONAPESCA landing site",
+       x = "Longitude",
+       y = "Latitude",
+       fill = "Matched")
+```
